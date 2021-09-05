@@ -25,7 +25,9 @@ try:
         for port in range(1, 65535):
                 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
                 socket.setdefaulttimeout(1)
-                result = s.connect_ex((target, port)) #retorna um erro, se a porta est>                #print("[+] Checando porta {}  [+]".format(port)) #< mostra todas as p>                if result == 0:
+                result = s.connect_ex((target, port)) #retorna um erro, se a porta estiver aberta retorna 0, se nao estiver aberta ele retorna 1
+                #print("[+] Checando porta {}  [+]".format(port)) #< mostra todas as portas que estao sendo checadas
+                if result == 0:
                         print("[+] Porta {} esta aberta [+]".format(port))
                 s.close()
 
@@ -40,4 +42,5 @@ except socket.gaierror:
 except socket.error:
         print("[!] Falha ao tentar se conectar ao servidor [!]")
         sys.exit()
+
 
